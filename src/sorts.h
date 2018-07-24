@@ -1,3 +1,5 @@
+#include <algorithm>
+
 void BubbleSort(int arr[], int len);
 
 /** Inplace sort of the array using the BubbleSort algorithm
@@ -9,9 +11,7 @@ void BubbleSort(int *arr, int len) {
     for(int i = 0; i < len - 1; i++) {
         for(int j = 0; j < len - i - 1; j++) {
             if(arr[j + 1] < arr[j]) {
-                int swap = arr[j + 1];
-                arr[j + 1] = arr[j];
-                arr[j] = swap;
+                std::swap(arr[j], arr[j+1]);
             }
         }
     }
