@@ -91,12 +91,14 @@ void Swap(int& lhs, int &rhs) {
  * @param right: right index of partition
  */
 int Partition(int* data, int left, int right) {
-    int pivot = data[right];
+    int pivot_idx = (left + right) / 2;
+    Swap(data[pivot_idx], data[right]);
+
     int i = (left - 1);
 
     for (int j = left; j <= right - 1; ++j)
     {
-        if (data[j] <= pivot)
+        if (data[j] <= data[right])
         {
             ++i;
             Swap(data[i], data[j]);
