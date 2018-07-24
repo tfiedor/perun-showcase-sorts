@@ -7,7 +7,11 @@
 
 #define DEBUG false
 
+#if DEBUG
+const int MAX_SORT_ARR_LEN = 50;
+#else
 const int MAX_SORT_ARR_LEN = 5000;
+#endif
 const int SORT_ARR_LEN_INC = 10;
 
 /** Prints the input array
@@ -47,7 +51,7 @@ int main() {
         if(DEBUG) {
             std::cout << "Applying BubbleSort!\n";
         }
-        InsertSort(input, i);
+        QuickSort(input, i);
         if(DEBUG) {
             std::cout << "Done!\n";
         }
