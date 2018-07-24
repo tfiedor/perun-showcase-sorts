@@ -5,6 +5,9 @@ int Partition(int* data, int left, int right);
 void BubbleSort(int arr[], int len);
 void InsertSort(int arr[], int len);
 void Swap(int& lhs, int &rhs);
+void Swap(int array[], int left, int right);
+void HeapSort(int array[], int size);
+void RepairTop(int array[], int bottom, int topIndex);
 
 /** Inplace sort of the array using the BubbleSort algorithm
  *
@@ -84,6 +87,16 @@ void Swap(int& lhs, int &rhs) {
     std::swap(lhs, rhs);
 }
 
+/** Helper function for swapping two values in array
+ *
+ * @param array: input array
+ * @param left: index of the left operand
+ * @param right: index of the right operand
+ */
+void Swap(int array[], int left, int right) {
+    Swap(array[left], array[right]);
+}
+
 /** Helper function for partitioning array for QuickSort
  *
  * @param data: array with values
@@ -109,3 +122,39 @@ int Partition(int* data, int left, int right) {
 
     return (i + 1);
 }
+
+/** Sorts the input array using HeapSort
+ *
+ * @param array: input array
+ * @param size: size of array
+ */
+void HeapSort(int array[], int size){
+    for (int i = size/2 - 1; i >= 0; i--) {
+        RepairTop(array, size - 1, i);
+    }
+    for (int i = size - 1; i > 0; i--) {
+        Swap(array, 0, i);
+        RepairTop(array, i - 1, 0);
+    }
+}
+
+/** Helper function for sifting to the top.
+ *
+ * @param array: input array
+ * @param bottom: bottom of the heap
+ * @param topIndex: top of the heap
+ */
+void RepairTop(int array[], int bottom, int topIndex) {
+    int tmp = array[topIndex];
+    int succ = topIndex*2 + 1;
+    if (succ < bottom && array[succ] > array[succ+1]) succ++;
+
+    while (succ <= bottom && tmp > array[succ]) {
+        array[topIndex] = array[succ];
+        topIndex = succ;
+        succ = succ*2 + 1;
+        if (succ < bottom && array[succ] > array[succ+1]) succ++;
+    }
+    array[topIndex] = tmp;
+}
+

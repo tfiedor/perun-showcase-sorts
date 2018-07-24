@@ -51,7 +51,7 @@ int main() {
         if(DEBUG) {
             std::cout << "Applying BubbleSort!\n";
         }
-        QuickSort(input, i);
+        HeapSort(input, i);
         if(DEBUG) {
             std::cout << "Done!\n";
         }
