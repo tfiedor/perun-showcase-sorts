@@ -47,7 +47,7 @@ int main() {
         if(DEBUG) {
             std::cout << "Applying BubbleSort!\n";
         }
-        BubbleSort(input, i);
+        InsertSort(input, i);
         if(DEBUG) {
             std::cout << "Done!\n";
         }
